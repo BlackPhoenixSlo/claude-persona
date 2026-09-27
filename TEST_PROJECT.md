@@ -5,7 +5,10 @@ Run in a FRESH directory, not this repo.
 ## 1. Setup
 ```bash
 mkdir -p ~/persona-test-1 && cd ~/persona-test-1 && git init -b main && cp -r /Users/jakabasej/claudepersona/.claude .
+claude   # run once interactively, accept the trust dialog, then exit
 ```
+Or instead of `claude`: `jq --arg p "$PWD" '.projects[$p].hasTrustDialogAccepted = true' ~/.claude.json > /tmp/cj && mv /tmp/cj ~/.claude.json`.
+Why: untrusted workspaces ignore `permissions.allow`, so pytest/git commit get denied under `-p`.
 
 ## 2. Launch
 `claude --agent orchestrator --permission-mode acceptEdits`, then paste the task below.
@@ -32,3 +35,9 @@ mkdir -p ~/persona-test-1 && cd ~/persona-test-1 && git init -b main && cp -r /U
 - Orchestrator writing code itself instead of delegating to `implementer`.
 - Reviewer (or devils-advocate) editing files instead of reporting.
 - `permissionMode` not applying under `--agent` (known: session may report `default`).
+
+## 6. Run 1 result (2026-09-27)
+- First run PARTIAL (workspace untrusted: pytest/git/codex denied); DONE after trusting the workspace.
+- Parser built; reviewer 3 rounds -> APPROVE; devils-advocate 5 fixes applied; 18 tests pass.
+- six-hats not spawned (as expected). Cost ~$7.6, 38 min.
+- The one defect was workspace trust, not the personas.

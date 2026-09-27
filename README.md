@@ -26,6 +26,7 @@ Smoke test (2026-09-27, `claude -p --agent reviewer`): Read `.env` blocked by de
 - Read denies also cover `cat`/`head`/`tail`/`sed` in Bash, but not `grep -r`, scripts (python/node) or `< .env` redirects.
 - `tools:` limits the whole session under `claude --agent <name>`. With `@`-delegation it limits only the subagent, not your main thread.
 - Grep/Glob were absent from the session tool list under `claude -p --agent` when Bash was also listed (2.1.252); Bash equivalents still work.
+- A fresh workspace must be trusted once (interactive `claude` or `hasTrustDialogAccepted` in ~/.claude.json) or `permissions.allow` is ignored and `-p` runs get denied on pytest/git.
 - Permission arrays merge. Overlays can add denies but cannot remove allows.
 - operator: browser/computer MCP tools under `--agent` are untested. Computer use is off until enabled in `/mcp` and does not work under `claude -p`; Chrome needs `claude --chrome`.
 
