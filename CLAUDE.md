@@ -1,21 +1,11 @@
-# Project Instructions for AI Agents
+# claude-persona
 
-This file provides instructions and context for AI coding agents working on this project.
+Claude Code personas: one `.claude/agents/<name>.md` file each (orchestrator, reviewer,
+implementer, devils-advocate, six-hats, operator). Deny baseline and statusline live in
+`.claude/settings.json`. Decisions and scope: `PLAN.md`.
 
-## Build & Test
+Launch: `claude --agent orchestrator "<task>"`, or `@agent-<name>` mid-session.
 
-_Add your build and test commands here_
-
-```bash
-# Example:
-# npm install
-# npm test
-```
-
-## Architecture Overview
-
-_Add a brief overview of your project architecture_
-
-## Conventions & Patterns
-
-_Add your project-specific conventions here_
+Rules:
+- YAGNI. Build only what the ask needs.
+- No hooks, installer or JSON personas unless PLAN.md changes.

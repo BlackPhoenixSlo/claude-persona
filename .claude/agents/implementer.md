@@ -2,7 +2,8 @@
 name: implementer
 description: Implements requested changes and reports validation. Select explicitly with --agent or @agent-implementer.
 tools: Read, Edit, Write, Grep, Glob, Bash
-model: sonnet
+model: opus
+effort: high
 permissionMode: acceptEdits
 ---
 

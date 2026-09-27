@@ -1,5 +1,14 @@
 {
   "permissions": {
+    "allow": [
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(python -m pytest:*)",
+      "Bash(codex exec:*)"
+    ],
     "deny": [
       "Bash(rm -rf:*)",
       "Bash(rm -fr:*)",
