@@ -3,12 +3,13 @@
 Run in a FRESH directory, not this repo.
 
 ## 1. Setup
+Copy the whole `.claude/` dir (agents + settings.json), then trust the workspace once.
 ```bash
-mkdir -p ~/persona-test-1 && cd ~/persona-test-1 && git init -b main && cp -r /Users/jakabasej/claudepersona/.claude .
+mkdir -p ~/persona-test-1 && cd ~/persona-test-1 && git init -b main && cp -r <path-to>/claude-persona/.claude .
 claude   # run once interactively, accept the trust dialog, then exit
 ```
 Or instead of `claude`: `jq --arg p "$PWD" '.projects[$p].hasTrustDialogAccepted = true' ~/.claude.json > /tmp/cj && mv /tmp/cj ~/.claude.json`.
-Why: untrusted workspaces ignore `permissions.allow`, so pytest/git commit get denied under `-p`.
+Why: untrusted workspaces ignore `permissions.allow`, so pytest/git commit get denied under `-p` (allow rules include `python3 -m pytest` and `pytest`).
 
 ## 2. Launch
 `claude --agent orchestrator --permission-mode acceptEdits`, then paste the task below.

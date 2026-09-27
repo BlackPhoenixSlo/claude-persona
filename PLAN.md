@@ -1,4 +1,6 @@
-# claude-persona — Plan
+# claude-persona — Design record
+
+Decisions, v1 deliverables, v2 changes and next steps. User docs: `README.md`.
 
 Personas for Claude Code. A persona = one `.claude/agents/<name>.md` file bundling
 instructions, tool restrictions, permission mode and model. Manual selection only.
@@ -8,21 +10,21 @@ instructions, tool restrictions, permission mode and model. Manual selection onl
 - **No LLM auto-router.** An LLM choosing a permission set from untrusted prompt text is a
   prompt-injection path. Hooks also cannot swap the system prompt mid-session.
 - **One source of truth per persona:** the agent `.md` file. `claude --agent <name>` runs a
-  whole session as that persona; `@<name>` delegates mid-session. No parallel `personas/*.json`.
-- **Enforcement is only settings deny rules.** Subagent `tools:` scopes the subagent, not the
+  whole session as that persona; `@agent-<name>` delegates mid-session. No parallel `personas/*.json`.
+- **Only settings deny rules are enforced everywhere.** Subagent `tools:` scopes the subagent, not the
   main thread. A parent in `bypassPermissions`/`acceptEdits`/`auto` overrides a subagent's
   `permissionMode`. Document this; never call personas a sandbox.
 - **YAGNI.** Two personas. No hook, no installer, no plugin, no architect persona. (superseded by v2)
 
-## Deliverables
+## v1 deliverables (done; v2 changes below)
 
 | # | Item | Acceptance |
 |---|------|------------|
 | 1 | `.claude/agents/reviewer.md` | `name`, `description` (one sharp line), `model: opus`, `tools: Read, Grep, Glob, Bash` (`tools:` takes plain `Bash`, not `Bash(git diff:*)`; git-only scope is advisory in the body), `permissionMode: plan`. Body: read-only review; report findings as file:line evidence + open questions; never edit, never broaden access when blocked. |
-| 2 | `.claude/agents/implementer.md` | `name`, `description`, `model: sonnet`, edit tools, `permissionMode: acceptEdits`. Body: implement; report changed files and how it was validated. |
+| 2 | `.claude/agents/implementer.md` | `name`, `description`, `model: sonnet` (v2: opus, effort high), edit tools, `permissionMode: acceptEdits`. Body: implement; report changed files and how it was validated. |
 | 3 | `.claude/settings.json` | `permissions.deny` baseline: destructive rm, `git push --force`, `.env*`, `**/secrets/**`, `~/.ssh/**`. Comment in README that pattern denies are guardrails, not a sandbox. |
 | 4 | Statusline | `statusLine` in settings.json shows the active agent name (or "default"). ≤10 lines of shell. |
-| 5 | `README.md` (~20 lines) | Persona table (name, model, tools, enforced/advisory). Launch: `claude --agent reviewer`, `@reviewer`. Verify snippet: ask Claude to `rm -rf /tmp/x` and read `.env`; both must be refused. Caveats: subagent `tools:` scope, permission array merge (denies add, allows can't be removed by overlay). Sharing: commit `.claude/` for team, `~/.claude/agents/` for personal. Tested Claude Code version. |
+| 5 | `README.md` (~20 lines) | Persona table (name, model, tools, enforced/advisory). Launch: `claude --agent reviewer`, `@agent-reviewer`. Verify snippet: ask Claude to `rm -rf /tmp/x` and read `.env`; both must be refused. Caveats: subagent `tools:` scope, permission array merge (denies add, allows can't be removed by overlay). Sharing: commit `.claude/` for team, `~/.claude/agents/` for personal. Tested Claude Code version. |
 | 6 | Smoke test (manual) | Run the README verify snippet under `claude --agent reviewer`; confirm both denied and reviewer cannot Edit. Record result in README. |
 
 ## Deferred (add only on signal)
