@@ -58,7 +58,7 @@ Smoke test (2026-09-27, `claude -p --agent reviewer`): Read `.env` blocked by de
 
 ## First end-to-end test
 
-[TEST_PROJECT.md](TEST_PROJECT.md) builds a small Python CLI in a fresh repo with the orchestrator, implementer, reviewer and devils-advocate. Result on 2026-09-27: 18 tests pass, reviewer approved after 3 rounds, ~$7.6, 38 min. The only defect was workspace trust, not the personas.
+[runs/2026-09-27-dmca-notice-parser/TASK.md](runs/2026-09-27-dmca-notice-parser/TASK.md) builds a small Python CLI in a fresh repo with the orchestrator, implementer, reviewer and devils-advocate. Result on 2026-09-27: 18 tests pass, reviewer approved after 3 rounds, ~$7.6, 38 min. The only defect was workspace trust, not the personas. See [STORY.md](runs/2026-09-27-dmca-notice-parser/STORY.md) for the full story, code and run record.
 
 ## Sharing
 

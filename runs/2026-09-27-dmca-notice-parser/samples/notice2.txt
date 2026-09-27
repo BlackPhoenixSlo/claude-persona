@@ -1,0 +1,24 @@
+From: Desmond Achterberg <desmond.achterberg@example.com>
+To: abuse@example.net
+Subject: DMCA Notice - unlicensed distribution of the "Nightjar Sessions" recordings
+Date: March 5, 2026
+
+Hello,
+
+My name is Desmond Achterberg and I manage the Achterberg Sound Archive. It has
+come to our attention that complete copies of one of our releases are being
+distributed from your network without a licence.
+
+The infringing material is located at https://files.example.net/share/nightjar-sessions.zip
+and also at https://files.example.net/share/nightjar-sessions-part2.zip.
+
+An authorized copy of the original work can be found at
+https://achterberg-sound.example.com/releases/nightjar-sessions .
+
+Please remove the files promptly. I have a good faith belief that the use of the
+recordings in the manner complained of is not permitted by the rights holder,
+and I confirm under penalty of perjury that this report is accurate.
+
+Sincerely,
+Desmond Achterberg
+Achterberg Sound Archive

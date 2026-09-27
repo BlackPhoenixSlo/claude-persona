@@ -56,6 +56,6 @@ Supersedes: "Two personas" and "no architect persona" (orchestrator fills that r
 Still holds: no LLM router; no hooks, installer or `personas/*.json`; enforcement = deny rules only.
 
 ### Next
-1. Simple test project in a fresh session via `TEST_PROJECT.md`.
+1. Simple test project in a fresh session via [`runs/2026-09-27-dmca-notice-parser/TASK.md`](runs/2026-09-27-dmca-notice-parser/TASK.md).
 2. Bigger test: regenerate the DMCA website from one of the user's private repos
    (DMCAtakedownProcess, appDMCA, takedown-form-filler, IgDMCAoutreach, DmcaTG); which one is TBD by the user.
