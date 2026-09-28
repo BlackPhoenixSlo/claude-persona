@@ -51,3 +51,6 @@ cd runs/2026-09-27-dmca-notice-parser
 python3 dmca_notice_parser.py samples/notice1.txt
 pytest -q
 ```
+
+## Re-run log
+Sanity check 2026-09-28: pytest 18 passed in 0.12s
