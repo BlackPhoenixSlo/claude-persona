@@ -36,6 +36,37 @@ instructions, tool restrictions, permission mode and model. Manual selection onl
 - Automated deny test harness — a deny rule regresses or CI exists.
 - Cost visibility — an opus bill surprises someone; `/cost` until then.
 
+### Future improvements (2026-09-28, from docs check of agent frontmatter; none used yet)
+
+Per-persona fields the agent files support but we do not set. Add each only on its signal.
+
+- `memory: project` on orchestrator — its own `.claude/agent-memory/orchestrator/` that persists
+  across runs, separate from `deliverables/`. Signal: a second run repeats a decision the first
+  already made. Requires auto-memory enabled.
+- `skills:` on reviewer — preload the thermo-nuclear review skill instead of the distilled body.
+  Signal: the body drifts from the skill, or the skill changes.
+- `mcpServers:` on operator — declare the browser/computer MCP server in the file instead of
+  relying on inheritance. Signal: first real operator task (DMCA website test).
+- `maxTurns:` on orchestrator — hard cap as a backstop to the 3-round review loop. Signal: a run
+  that loops or exceeds budget.
+- `disallowedTools:` on reviewer/devils-advocate/six-hats — explicit Edit/Write deny in addition to
+  the allowlist. Signal: a read-only persona edits anything.
+- `hooks:` per persona — e.g. a PostToolUse pytest run for implementer. Signal: implementer ships
+  untested code twice.
+- `background: true` / `isolation: worktree` for implementer — parallel builds in isolated
+  worktrees. Signal: orchestrator needs two implementers on one repo at once.
+- `omitClaudeMd` — skip CLAUDE.md for reviewers. Needs Claude Code ≥ 2.1.271; we are on 2.1.252.
+- Workspace trust — every new directory must be trusted once or `permissions.allow` is ignored
+  under `-p`. Hit this twice (persona-test-1, then this repo). Candidate: a one-line setup script
+  that sets `hasTrustDialogAccepted`. Signal: a third occurrence.
+- Attribution — the orchestrator's first test commit used `Co-Authored-By: Claude Code`, not the
+  user's preferred Fable line. Candidate: put the trailer in orchestrator.md. Signal: user cares.
+
+Facts behind these: subagents get a fresh context window, load every CLAUDE.md level, do not see
+the parent conversation, do not load auto-memory, and inherit MCP tools unless `tools:` narrows them.
+`permissionMode` in frontmatter is ignored when the parent runs in acceptEdits/bypass/auto and was
+observed ignored under `claude -p --agent` too; the launch flag is the working control.
+
 ## Facts verified (Claude Code 2.1.252, 2026-09-27)
 
 - `claude --agent <name>` and `--settings <file|json>` exist.
